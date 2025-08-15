@@ -1,0 +1,120 @@
+.chart-display-container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.chart-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap; /* ✅ Prevents overflow on small screens */
+}
+
+.chart-controls label {
+    font-weight: 500;
+    color: #333;
+    white-space: nowrap;
+}
+
+.chart-controls select {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    cursor: pointer;
+}
+
+.chart-wrapper {
+    height: 400px; /* Default for desktop */
+    width: 100%;
+    background: #fefefe;
+    padding: 10px; /* Reduced for mobile */
+    border-radius: 10px;
+    overflow-x: auto; /* ✅ Enables scrolling if chart is too wide */
+}
+
+.chart-wrapper .chartjs-legend ul {
+    display: flex;
+    flex-wrap: wrap; /* ✅ Wrap legend items */
+    justify-content: center;
+    gap: 8px;
+    padding: 0;
+    list-style: none;
+}
+.chart-wrapper .chartjs-legend li {
+    display: flex;
+    align-items: center;
+    white-space: normal; /* ✅ Allow text to break into 2 lines */
+    text-align: center;
+}
+
+.chart-wrapper canvas,
+.chart-wrapper svg {
+    max-width: 100% !important; /* ✅ Makes charts shrink on small screens */
+    height: auto !important;
+}
+
+.export-buttons {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* ✅ Allows wrapping on small screens */
+}
+
+.export-buttons button {
+    background: #4e79a7;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    flex: 1 1 auto; /* ✅ Buttons stretch evenly */
+}
+
+.export-buttons button:hover {
+    background: #3b5b80;
+}
+
+/* 📱 Mobile-specific tweaks */
+@media (max-width: 600px) {
+    .chart-display-container {
+        padding: 15px;
+    }
+    .chart-controls {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .chart-controls select {
+        width: 100%;
+    }
+    .export-buttons button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .chart-wrapper {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .chart-wrapper {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chart-wrapper {
+        height: 250px; /* Small screen mobile */
+    }
+}

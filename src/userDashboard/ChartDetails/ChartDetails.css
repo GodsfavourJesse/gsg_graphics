@@ -1,0 +1,147 @@
+:root {
+    --bg: #f7f9fc;
+    --card: #ffffff;
+    --muted: #6b7280;
+    --accent: #4e79a7;
+    --shadow: rgba(16, 24, 40, 0.06);
+    --radius: 12px;
+    --maxWidth: 1000px;
+    --minWidth: 200px;
+}
+
+.chart-details-page {
+    padding: 28px;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.cd-topbar {
+    width: 100%;
+    max-width: var(--maxWidth);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.cd-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 4px 12px var(--shadow);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.cd-back:hover {
+    background: #f3f4f6;
+}
+
+.cd-card {
+    width: 100%;
+    max-width: var(--maxWidth);
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px var(--shadow);
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.cd-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+.cd-title {
+    margin: 0 0 6px 0;
+    font-size: 1.6rem;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.cd-sub {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+/* Chart area */
+.cd-chart {
+    background: linear-gradient(180deg, rgba(246,249,255,1), #ffffff);
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+    overflow-x: auto; /* ensures large charts fit on small screens */
+}
+
+/* Loading / Error */
+.cd-loading,
+.cd-error {
+    padding: 30px;
+    text-align: center;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+/* 📱 Responsive Adjustments */
+@media (max-width: 768px) {
+    .chart-details-page {
+        padding: 20px;
+    }
+
+    .cd-card {
+        padding: 16px;
+    }
+
+    .cd-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .cd-title {
+        font-size: 1.4rem;
+    }
+
+    .cd-sub {
+        font-size: 0.9rem;
+    }
+
+    .cd-topbar {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .cd-card {
+        padding: 14px;
+    }
+
+    .cd-title {
+        font-size: 1.2rem;
+    }
+
+    .cd-sub {
+        font-size: 0.85rem;
+    }
+
+    .cd-back {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+}
