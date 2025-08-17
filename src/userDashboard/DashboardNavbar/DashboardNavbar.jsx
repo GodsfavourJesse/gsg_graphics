@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { 
-    FaHome, 
-    FaChartPie, 
-    FaUser, 
-    FaCog, 
-    FaBars 
-} from "react-icons/fa";
 import LogoutButton from "../Logout/LogoutButton";
 import "./DashboardNavbar.css";
+import { BarChart3, Bookmark, LayoutDashboard, Settings } from "lucide-react";
 
 const DashboardNavbar = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -35,7 +29,7 @@ const DashboardNavbar = () => {
                         `sidebar-link ${isActive ? "active" : ""}`
                     }
                 >
-                    <FaHome className="icon" />
+                    <LayoutDashboard className="icon" />
                     {!collapsed && <span>Dashboard</span>}
                 </NavLink>
 
@@ -45,7 +39,7 @@ const DashboardNavbar = () => {
                         `sidebar-link ${isActive ? "active" : ""}`
                     }
                 >
-                    <FaChartPie className="icon" />
+                    <BarChart3 className="icon" />
                     {!collapsed && <span>Create Charts</span>}
                 </NavLink>
 
@@ -55,7 +49,7 @@ const DashboardNavbar = () => {
                         `sidebar-link ${isActive ? "active" : ""}`
                     }
                 >
-                    <FaUser className="icon" />
+                    <Bookmark className="icon" />
                     {!collapsed && <span>Saved Charts</span>}
                 </NavLink>
 
@@ -65,7 +59,7 @@ const DashboardNavbar = () => {
                         `sidebar-link ${isActive ? "active" : ""}`
                     }
                 >
-                    <FaCog className="icon" />
+                    <Settings className="icon" />
                     {!collapsed && <span>Settings</span>}
                 </NavLink>
             </nav>
