@@ -30,16 +30,6 @@ const DashboardNavbar = () => {
                         `sidebar-link ${isActive ? "active" : ""}`
                     }
                 >
-                    <LayoutDashboard className="icon" />
-                    {!collapsed && <span>Dashboard</span>}
-                </NavLink>
-
-                <NavLink 
-                    to="/dashboard/data-input" 
-                    className={({ isActive }) => 
-                        `sidebar-link ${isActive ? "active" : ""}`
-                    }
-                >
                     <BarChart3 className="icon" />
                     {!collapsed && <span>Create Charts</span>}
                 </NavLink>

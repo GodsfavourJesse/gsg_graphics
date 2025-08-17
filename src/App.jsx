@@ -37,9 +37,9 @@ export default function App() {
                 <Route path="/login" element={<Login />} />
 
                 <Route path="/dashboard" element={<Dashboard />}>
-                    <Route index element={<DashboardHome />} />
+                    <Route index element={<DataInputForm />} />
                     <Route path="saved-chart" element={<SavedCharts />} />
-                    <Route path="data-input" element={<DataInputForm />} />
+                    {/* <Route path="data-input" element={<DataInputForm />} /> */}
                     <Route path="chart-display" element={<ChartDisplay/>} />
                     <Route path="chart-details" element={<ChartDetails/>} />
                 </Route>
