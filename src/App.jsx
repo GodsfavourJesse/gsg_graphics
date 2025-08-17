@@ -8,6 +8,8 @@ import Dashboard from "./userDashboard/Dashboard/Dashboard";
 import SavedCharts from "./userDashboard/SavedCharts/SavedCharts";
 import DataInputForm from "./userDashboard/DataInputForm/DataInputForm";
 import ChartDisplay from "./userDashboard/ChartDisplay/ChartDisplay";
+import DashboardHome from "./userDashboard/DashboardHome/DashboardHome";
+import ChartDetails from "./userDashboard/ChartDetails/ChartDetails";
 
 export default function App() {
     const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light'); 
@@ -22,9 +24,9 @@ export default function App() {
         setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
     }
 
-    // Hide navbar on login, signup, and dashboard
-    const hideNavbarPaths = ['/dashboard'];
-    const showNavbar = !hideNavbarPaths.includes(location.pathname);
+    // Hide navbar on all dashboard routes
+    const showNavbar = !location.pathname.startsWith('/dashboard');
+
 
     return (
         <>
@@ -35,10 +37,11 @@ export default function App() {
                 <Route path="/login" element={<Login />} />
 
                 <Route path="/dashboard" element={<Dashboard />}>
-                    <Route index element={<DataInputForm />} />
+                    <Route index element={<DashboardHome />} />
                     <Route path="saved-chart" element={<SavedCharts />} />
                     <Route path="data-input" element={<DataInputForm />} />
                     <Route path="chart-display" element={<ChartDisplay/>} />
+                    <Route path="chart-details" element={<ChartDetails/>} />
                 </Route>
             </Routes>
         </>

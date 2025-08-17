@@ -1,54 +1,51 @@
 .dashboard-container {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
 }
 
-.sidebar {
-    width: 250px;
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 20px;
-}
-
-.sidebar h2 {
-    margin-bottom: 20px;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin-bottom: 15px;
-}
-
-.sidebar ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.sidebar ul li a:hover {
-    text-decoration: underline;
-}
-
-.dashboard-main {
+/* Main Content */
+.dashboard-content {
     flex: 1;
+    margin-left: 250px; /* Same as sidebar width */
     padding: 20px;
-    background-color: #f4f4f5;
+    background: #f4f6f9;
+    overflow-y: auto;
+    transition: margin-left 0.3s ease-in-out;
 }
 
-.logout-btn {
-    background: #e63946;
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 14px;
+/* When sidebar is collapsed */
+.sidebar.collapsed {
+    width: 80px;
+    min-width: 80px;
 }
 
-.logout-btn:hover {
-    background: #d62828;
+.sidebar.collapsed ~ .dashboard-content {
+    margin-left: 80px;
 }
 
+/* 📱 Small screens: turn sidebar into bottom navbar */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column; /* Stack navbar + content */
+    }
+
+    .dashboard-navbar {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        width: 100%;
+        height: 60px; /* Height of bottom navbar */
+        min-width: unset;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .dashboard-content {
+        margin-left: 0; /* No left margin */
+        margin-bottom: 60px; /* Prevent content overlap with bottom navbar */
+    }
+}

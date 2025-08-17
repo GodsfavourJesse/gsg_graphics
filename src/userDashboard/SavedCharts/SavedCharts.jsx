@@ -37,7 +37,7 @@ export default function SavedCharts() {
                         <div
                             key={chart.id}
                             className="chart-card"
-                            onClick={() => navigate(`/chart/${chart.id}`)}
+                            onClick={() => navigate(`/dashboard/chart-display/${chart.id}`)}
                         >
                             <div className="chart-card-header">
                                 <div className="chart-icon-wrap">
