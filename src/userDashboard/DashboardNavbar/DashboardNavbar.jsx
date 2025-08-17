@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import LogoutButton from "../Logout/LogoutButton";
 import "./DashboardNavbar.css";
 import { BarChart3, Bookmark, LayoutDashboard, Settings } from "lucide-react";
+import { FaBars } from "react-icons/fa";
 
 const DashboardNavbar = () => {
     const [collapsed, setCollapsed] = useState(false);
