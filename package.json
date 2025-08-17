@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "homepage": "https://GodsfavourJesse.github.io.gsg_graphics"
+    "homepage": "."
   },
   "dependencies": {
     "@fontsource/outfit": "^5.2.6",
