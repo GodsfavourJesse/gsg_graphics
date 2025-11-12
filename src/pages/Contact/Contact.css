@@ -1,0 +1,104 @@
+.gsq-contact {
+  padding: 80px 10%;
+  color: #222;
+  font-family: "Inter", Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-header {
+  text-align: center;
+  max-width: 700px;
+  margin-bottom: 60px;
+}
+
+.contact-header h1 {
+  font-size: 2.4rem;
+  color: var(--text-color);
+  margin-bottom: 15px;
+  letter-spacing: -0.5px;
+}
+
+.contact-header p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.contact-card {
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(235, 234, 234, 0.06);
+  max-width: 900px;
+  width: 100%;
+  padding: 50px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contact-left h2 {
+  font-size: 1.6rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.contact-left p {
+  color: var(--text-color);
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.contact-links div {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.contact-icon {
+  color: var(--primary-color);
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.creative-hint {
+  border-top: 1px solid var(--primary-color);
+  padding-top: 15px;
+  font-style: italic;
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+.creative-hint span {
+  display: block;
+  text-align: center;
+  opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .gsq-contact {
+    padding: 60px 6%;
+  }
+
+  .contact-card {
+    padding: 40px 25px;
+  }
+
+  .contact-header h1 {
+    font-size: 2rem;
+  }
+
+  .contact-left h2 {
+    font-size: 1.4rem;
+  }
+}

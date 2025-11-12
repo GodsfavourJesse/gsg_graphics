@@ -1,68 +1,245 @@
-.form-container {
-    background: #ffffff;
-    padding: 20px;
-    max-width: 500px;
-    margin: auto;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+.chart-page-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* background: var(--bg-light); */
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  max-width: 800px;
+  /* margin: 2rem auto; */
+  /* box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); */
+  transition: all 0.4s ease;
 }
 
-.form-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-label {
-    display: flex;
-    font-weight: 500;
-    margin-bottom: 5px;
-    color: #555;
+.theme-toggle:hover {
+  transform: rotate(20deg);
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-}
-input:focus {
-    outline: none;
-    border-color: #4e79a7;
-    box-shadow: 0 0 5px rgba(78, 121, 167, 0.4);
+.chart-form {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.button-group{
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
-button {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 14px;
-    transition: 0.3s ease;
-    outline: none;
+.input-group label {
+  font-weight: 600;
+  margin-bottom: 5px;
 }
-button:hover {
-    opacity: 0.9;
+
+.input-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+  border-radius: 10px;
+  background: transparent;
+  outline: none;
+  font-size: 15px;
+  transition: all 0.3s;
+}
+
+.input-group input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 6px rgba(99, 102, 241, 0.4);
+}
+
+.chart-type-selector {
+  margin-top: 1rem;
+}
+
+.chart-type-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+.chart-type-options button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: transparent;
+  color: var(--text-color);
+}
+
+.chart-type-options button.active {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.chart-type-options button:hover {
+  background: var(--secondary-color);
+  color: #fff;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.generate-btn,
+.save-btn {
+  flex: 1;
+  padding: 12px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.generate-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
 }
 
 .save-btn {
-    background: #4e79a7;
-    color: white;
+  background: linear-gradient(135deg, #6366f1, #4338ca);
 }
 
-.generate-btn:first-child {
-    background: #76b7b2;
-    color: white;
+.save-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+
+/* Spinner Overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.85);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease;
+}
+
+.loading-overlay p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Chart Preview Overlay */
+.chart-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.3s ease;
+}
+
+.chart-container {
+  position: relative;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+  max-width: 900px;
+  width: 95%;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  z-index: 2100;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+@media (max-width: 768px) {
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+
+
+.save-chart-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.save-chart-container .save-btn {
+  width: 200px;
+  text-align: center;
 }

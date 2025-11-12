@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaBars, FaMoon, FaSun, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
+import ToggleButton from '../LandingPageComponents/ToggleButton/ToggleButton';
 
 const Navbar = ({ toggleTheme, theme }) => {
     const navigate = useNavigate();
@@ -24,9 +25,10 @@ const Navbar = ({ toggleTheme, theme }) => {
 
                 {/* Desktop Menu */}
                 <ul className='nb-menu-links'>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/documentation">Documentation</a></li>
                 </ul>
 
                 {/* Desktop Buttons */}
@@ -45,12 +47,10 @@ const Navbar = ({ toggleTheme, theme }) => {
                     </button>
 
                     {/* Theme Toggle Button */}
-                    <button 
-                        className="theme-toggle-btn" 
-                        onClick={toggleTheme}
-                    >
-                        {theme === 'light' ? <FaMoon /> : <FaSun />}
-                    </button>
+                    <ToggleButton
+                        theme={theme}
+                        toggleTheme={toggleTheme}
+                    />
                 </div>
 
                 {/* Hamburger / Close Icon */}
@@ -62,15 +62,17 @@ const Navbar = ({ toggleTheme, theme }) => {
             {/* Mobile Menu */}
             <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
                 <ul>
-                    <li><a href="#features" onClick={toggleMenu}>Features</a></li>
-                    <li><a href="#about" onClick={toggleMenu}>About</a></li>
-                    <li><a href="#contact" onClick={toggleMenu}>Contact</a></li>
+                    <li><a href="/features" onClick={toggleMenu}>Features</a></li>
+                    <li><a href="/about" onClick={toggleMenu}>About</a></li>
+                    <li><a href="/contact" onClick={toggleMenu}>Contact</a></li>
+                    <li><a href="/Documentation" onClick={toggleMenu}>Documentation</a></li>
                 </ul>
 
                 {/* Theme Toggle in Mobile Menu */}
-                <button className="theme-toggle-btn" onClick={toggleTheme}>
-                    {theme === 'light' ? <FaMoon /> : <FaSun />}
-                </button>
+                <ToggleButton
+                    theme={theme}
+                    toggleTheme={toggleTheme}
+                />
 
                 <div className='mobile-btns'>
                     <button

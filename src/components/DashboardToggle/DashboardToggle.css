@@ -1,0 +1,54 @@
+.dashboard-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.toggle-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.toggle-switch {
+  width: 60px;
+  height: 30px;
+  border-radius: 30px;
+  background: var(--switch-bg, #ddd);
+  border: none;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.switch-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+}
+
+.switch-circle.dark {
+  left: 32px;
+  background: var(--primary-color);
+  color: white;
+}
+
+.toggle-mode-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}

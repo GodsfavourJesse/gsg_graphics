@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { FaChartLine, FaCloud, FaShareAlt, FaLock, FaMobileAlt, FaSyncAlt } from 'react-icons/fa';
-import './Features.css';
+import './FeatureSection.css';
 
-const Features = () => {
+const FeatureSection = () => {
     const features = [
         {
             icon: <FaChartLine />,
@@ -82,4 +82,4 @@ const Features = () => {
     );
 };
 
-export default Features;
+export default FeatureSection;

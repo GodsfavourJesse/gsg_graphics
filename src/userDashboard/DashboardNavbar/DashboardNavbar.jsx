@@ -34,7 +34,7 @@ const DashboardNavbar = () => {
                     {!collapsed && <span>Create Charts</span>}
                 </NavLink>
 
-                <NavLink 
+                {/* <NavLink 
                     to="/dashboard/saved-chart" 
                     className={({ isActive }) => 
                         `sidebar-link ${isActive ? "active" : ""}`
@@ -42,7 +42,7 @@ const DashboardNavbar = () => {
                 >
                     <Bookmark className="icon" />
                     {!collapsed && <span>Saved Charts</span>}
-                </NavLink>
+                </NavLink> */}
 
                 <NavLink 
                     to="/dashboard/settings" 

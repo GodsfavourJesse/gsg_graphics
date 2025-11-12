@@ -1,4 +1,8 @@
 .saved-charts-container {
+    width: 100%;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
     padding: 30px;
     background: linear-gradient(to bottom right, #f7f9fc, #eef1f6);
     min-height: 100vh;
@@ -128,7 +132,7 @@
     }
 
     .saved-charts-header {
-        text-align: center;
+        text-align: left;
     }
 
     .saved-charts-header h2 {

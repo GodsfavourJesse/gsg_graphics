@@ -1,53 +1,31 @@
-import React, { useRef, useState } from 'react';
-import { Bar, Line, Pie } from 'react-chartjs-2';
-import { 
-    Chart as ChartJS, 
-    Chart,
-    Title,
-    Tooltip,
-    Legend,
-    ArcElement,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    LineElement,
-    PointElement
+import React, { useRef } from 'react';
+import { Bar, Line, Pie, Doughnut } from 'react-chartjs-2';
+import {
+    Chart as ChartJS,
+    Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale,
+    BarElement, LineElement, PointElement
 } from 'chart.js';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './ChartDisplay.css';
 
 ChartJS.register(
-    Title,
-    Tooltip,
-    Legend,
-    ArcElement,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    LineElement,
-    PointElement
+    Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale,
+    BarElement, LineElement, PointElement
 );
 
-
-export default function ChartDisplay({ labels, dataValues}) {
+export default function ChartDisplay({ labels, dataValues, chartType }) {
     const chartRef = useRef(null);
-    const [chartType, setChartType] = useState("bar") //default
 
     const chartData = {
         labels,
         datasets: [
             {
-                labels: "Data",
+                label: "Data",
                 data: dataValues,
                 backgroundColor: [
-                    "#4e79a7",
-                    "#f28e2b",
-                    "#e15759",
-                    "#76b7b2",
-                    "#59a14f",
-                    "#edc949",
-                    "#af7aa1"
+                    "#4e79a7", "#f28e2b", "#e15759",
+                    "#76b7b2", "#59a14f", "#edc949", "#af7aa1"
                 ],
                 borderColor: "#333",
                 borderWidth: 1,
@@ -57,125 +35,80 @@ export default function ChartDisplay({ labels, dataValues}) {
 
     const chartOptions = {
         responsive: true,
-        maintainAspectRatio: false, //Flexible height scaling
-        plugins: { 
-            legend: { 
-                position: "top", 
-                labels: {
-                    boxWidth: 12, //Smaller legend icons for mobile
-                    font: { size: 12 },
-                    padding: 10,
-                    usePointStyle: true,
-                    // Force multi-line when space is small
-                    generateLabels: (chart) => {
-                        const original = ChartJS.overrides.doughnut.plugins.legend.labels.generateLabels;
-                        const labels = original(chart);
-                        return labels.map(label => ({
-                            ...label,
-                            text: label.text.length > 15 ? label.text.match(/.{1,15}/g).join("\n") : label.text
-                        }))
-                    }
-                }
-            },
-            title: { 
-                display: true, 
-                text: "Statistical Chart",
-                font: { size: 16 }
-            }
-        },
-        layout: {
-            padding: {
-                top: 10,
-                right: 10,
-                bottom: 10,
-                left: 10
-            }
-        },
-        scales: {
-            x: {
-                ticks: {
-                    font: { size: 12 },
-                    maxRotation: 45, // Prevents overlap on small screens
-                    minRotation: 0
-                }
-            },
-            y: {
-                ticks: {
-                    font: { size: 12 }
-                }
-            }
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: "top" },
+            title: { display: true, text: "Statistical Chart" }
         }
     };
 
+    // 🧊 Add watermark to captured canvas
+    const addWatermark = (canvas) => {
+        const ctx = canvas.getContext("2d");
+        const text = "Made by GSQ Graphics";
 
-    // Export to PNG
+        ctx.font = "bold 48px Poppins";
+        ctx.fillStyle = "rgba(79, 70, 229, 0.15)";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+
+        // Move and rotate canvas context
+        ctx.save();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.rotate(-Math.PI / 4); // 45° diagonal
+
+        // Draw the watermark multiple times across the image
+        for (let y = -canvas.height; y < canvas.height; y += 300) {
+            for (let x = -canvas.width; x < canvas.width; x += 600) {
+                ctx.fillText(text, x, y);
+            }
+        }
+
+        ctx.restore();
+    };
+
     const exportPNG = async () => {
-        const canvas = await html2canvas(chartRef.current);
+        const canvas = await html2canvas(chartRef.current, { scale: 2 });
+        addWatermark(canvas);
         const link = document.createElement("a");
         link.download = "chart.png";
         link.href = canvas.toDataURL("image/png");
         link.click();
-    }
+    };
 
-    // Export to PDF
     const exportPDF = async () => {
-        const canvas = await html2canvas(chartRef.current);
+        const canvas = await html2canvas(chartRef.current, { scale: 2 });
+        addWatermark(canvas);
         const imgData = canvas.toDataURL("image/png");
-
         const pdf = new jsPDF({
             orientation: "landscape",
             unit: "px",
             format: [canvas.width, canvas.height]
         });
-
         pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
         pdf.save("chart.pdf");
     };
 
-    // Decide which chart to render
     const renderChart = () => {
         const chartProps = { data: chartData, options: chartOptions };
         switch (chartType) {
-            case "bar":
-                return <Bar key={chartType} {...chartProps} />;
-            case "line":
-                return <Line key={chartType} {...chartProps} />;
-            case "pie":
-                return <Pie key={chartType} {...chartProps} />;
-            default:
-                return <Bar key={chartType} {...chartProps} />;
+            case "bar": return <Bar key="bar" {...chartProps} />;
+            case "line": return <Line key="line" {...chartProps} />;
+            case "pie": return <Pie key="pie" {...chartProps} />;
+            case "doughnut": return <Doughnut key="doughnut" {...chartProps} />;
+            default: return <Bar key="default" {...chartProps} />;
         }
-    }
-
+    };
 
     return (
         <div className='chart-display-container'>
-            {/* Chart Type Selector */}
-            <div className='chart-controls'>
-                <label>Choose Chart Type:</label>
-                <select 
-                    value={chartType} 
-                    onChange={(e) => setChartType(e.target.value)}
-                >
-                    <option value="bar">Bar</option>
-                    <option value="line">Line</option>
-                    <option value="pie">Pie</option>
-                </select>
-            </div>
-
-            {/* Chart Container */}
             <div ref={chartRef} className='chart-wrapper'>
                 {renderChart()}
             </div>
 
-            {/* Export Buttons */}
             <div className='export-buttons'>
-                <button onClick={exportPNG}>
-                    Export as PNG
-                </button>
-                <button onClick={exportPDF}>
-                    Export as PDF
-                </button>
+                <button onClick={exportPNG}>Export as PNG</button>
+                <button onClick={exportPDF}>Export as PDF</button>
             </div>
         </div>
     );

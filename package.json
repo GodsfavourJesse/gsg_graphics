@@ -11,8 +11,10 @@
     "homepage": "."
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@fontsource/outfit": "^5.2.6",
     "chart.js": "^4.5.0",
+    "emailjs-com": "^3.2.0",
     "firebase": "^12.1.0",
     "framer-motion": "^12.23.12",
     "html2canvas": "^1.4.1",

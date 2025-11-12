@@ -7,13 +7,6 @@ const Hero = () => {
 
     const navigate = useNavigate('');
 
-    const scrollToFeatures = () => {
-        const section = document.getElementById('features-section');
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
     return (
         <div className='hero-container'>
             <div className='hero-text'>
@@ -35,7 +28,7 @@ const Hero = () => {
                         Get Started
                     </button>
                     <button
-                        onClick={scrollToFeatures}
+                        onClick={() => navigate('/about')}
                         className='secondary-btn'
                     >
                         Learn More
